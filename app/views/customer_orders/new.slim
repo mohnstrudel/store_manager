@@ -1,0 +1,25 @@
+h2 New Customer Order
+
+dl
+  = form_for(@customer_order) do |f|
+    dt= f.label :product
+    / dd= f.select :product, options_from_collection_for_select(Product.all, :id, :title)
+    dd= f.select :product_id, options_for_select(Product.all.map{ |p| [p.title, p.id] })
+
+    dt= f.label :name
+    dd= f.text_field :name
+
+    dt= f.label :address
+    dd= f.text_field :address
+
+    dt= f.label :email
+    dd= f.text_field :email
+
+    dt= f.label :state
+    dd= f.text_field :state
+
+    dt= f.label :paid_amount
+    dd= f.text_field :paid_amount
+
+    dt
+    dd= f.submit

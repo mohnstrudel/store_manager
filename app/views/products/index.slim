@@ -1,0 +1,9 @@
+h2 All products
+
+dl
+  - @products.each do |product|
+    dt= product.title
+    dd
+      = product.brand
+      = product.size
+      = product.version

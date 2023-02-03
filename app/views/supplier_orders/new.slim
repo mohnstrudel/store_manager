@@ -1,0 +1,13 @@
+h2 New Supplier Order
+
+dl
+  = form_for(@supplier_order) do |f|
+    dt= f.label :product
+    / dd= f.select :product, options_from_collection_for_select(Product.all, :id, :title)
+    dd= f.select :product_id, options_for_select(Product.all.map{ |p| [p.title, p.id] })
+
+    dt= f.label :paid
+    dd= f.text_field :paid
+
+    dt
+    dd= f.submit

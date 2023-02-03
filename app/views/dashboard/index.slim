@@ -1,0 +1,30 @@
+h1 Dashboard
+
+p
+  = link_to "New product", new_product_path
+  =< link_to "All Products", products_path
+  br
+  | Latest products:
+  ul
+    - @products.each do |product|
+      li= product.title
+
+p
+  = link_to "New Supplier Order", new_supplier_order_path
+
+  br
+    | Latest Supplier Orders:
+    ul
+      - @supplier_orders.each do |supplier_order|
+        li= supplier_order.product.title
+
+p
+  = link_to "New Customer Order", new_customer_order_path
+  =< link_to "All Cusomer Orders", customer_orders_path
+
+  br
+    | Latest Customer Orders:
+    ul
+      - @customer_orders.each do |customer_order|
+        li= customer_order.product.title
+        li= "Coverage: #{customer_order.check_coverage}"

@@ -1,0 +1,21 @@
+h2 New Product
+
+dl
+  = form_for(@product) do |f|
+    dt= f.label :title
+    dd= f.text_field :title
+
+    dt= f.label :brand
+    dd= f.text_field :brand
+
+    dt= f.label :version
+    dd= f.select :version, ApplicationHelper::VERSIONS
+
+    dt= f.label :size
+    dd= f.select :size, ApplicationHelper::SIZES
+
+    dt= f.label :color
+    dd= f.select :color, ApplicationHelper::COLORS
+
+    dt
+    dd= f.submit
