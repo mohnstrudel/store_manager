@@ -1,7 +1,13 @@
 h1 Dashboard
 
-p Debt to Suppliers
-= @debt
+p Total debt to Suppliers
+= @total_debt
+
+p Debt per Supplier
+dl
+- @debt.each do |supplier, debt|
+  dt= "Supplier: #{supplier}"
+  dd= "Debt: #{debt}"
 
 
 p
