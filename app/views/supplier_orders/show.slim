@@ -1,0 +1,24 @@
+h2= @supplier_order.full_title
+
+p="Debt: #{@debt}"
+
+dl
+  dt Purchase price
+  dd= @supplier_order.price
+
+  dt Supplier
+  dd= @supplier_order.supplier
+
+  dt Order number
+  dd=@supplier_order.order_number
+
+  dt Amount
+  dd=@supplier_order.amount
+
+p
+  | Payments
+
+  dl
+    = render @supplier_order.payments
+
+  = render partial: 'payments/form', locals: { payment: Payment.new, payable: @supplier_order }

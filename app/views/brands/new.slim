@@ -1,0 +1,9 @@
+h2 New Brand
+
+dl
+  = form_for(@brand) do |f|
+    dt= f.label :title
+    dd= f.text_field :title
+
+    dt
+    dd= f.submit

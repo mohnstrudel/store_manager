@@ -1,0 +1,9 @@
+h2 New Franchise
+
+dl
+  = form_for(@franchise) do |f|
+    dt= f.label :title
+    dd= f.text_field :title
+
+    dt
+    dd= f.submit

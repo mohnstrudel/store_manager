@@ -4,10 +4,23 @@ dl
   = form_for(@supplier_order) do |f|
     dt= f.label :product
     / dd= f.select :product, options_from_collection_for_select(Product.all, :id, :title)
-    dd= f.select :product_id, options_for_select(Product.all.map{ |p| [p.title, p.id] })
+    dd= f.select :product_id, options_for_select(Product.all.map{ |p| [p.full_title, p.id] })
 
-    dt= f.label :paid
-    dd= f.text_field :paid
+    dt= f.label "Statue price"
+    dd= f.number_field :price
+
+    dt= f.label :supplier
+    dd= f.select :supplier, ApplicationHelper::SUPPLIERS
+
+    dt= f.label :order_number
+    dd= f.text_field :order_number
+
+    dt= f.label "How many were bought?"
+    dd= f.text_field :amount
+
+    = f.fields_for :payments do |payment_builder|
+      dt= payment_builder.label "What did you pay per statue?"
+      dd= payment_builder.number_field :amount
 
     dt
     dd= f.submit

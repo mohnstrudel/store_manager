@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'franchises/new'
+  get 'franchises/index'
+  get 'brands/new'
+  get 'brands/index'
   get 'supplier_orders/index'
   get 'supplier_orders/show'
   get 'customer_orders/index'
@@ -11,5 +15,9 @@ Rails.application.routes.draw do
 
   root 'dashboard#index'
 
-  resources :products, :supplier_orders, :customer_orders
+  resources :products, :customer_orders, :brands, :franchises
+
+  resources :supplier_orders do
+    resources :payments, module: :supplier_orders
+  end
 end

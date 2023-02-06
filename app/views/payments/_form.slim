@@ -1,0 +1,9 @@
+= form_with model: [payable, payment] do |form|
+  - if form.object.errors.any?
+    - form.object.errors.full_messages.each do |message|
+      = message
+
+  = form.label "How much was paid?"
+  = form.number_field :amount
+
+  = form.submit "Create"

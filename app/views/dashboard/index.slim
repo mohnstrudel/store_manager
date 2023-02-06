@@ -1,5 +1,9 @@
 h1 Dashboard
 
+p Debt to Suppliers
+= @debt
+
+
 p
   = link_to "New product", new_product_path
   =< link_to "All Products", products_path
@@ -7,24 +11,46 @@ p
   | Latest products:
   ul
     - @products.each do |product|
-      li= product.title
+      li= product.full_title
 
 p
   = link_to "New Supplier Order", new_supplier_order_path
+  =< link_to "All Supplier Orders", supplier_orders_path
 
   br
     | Latest Supplier Orders:
     ul
       - @supplier_orders.each do |supplier_order|
-        li= supplier_order.product.title
+        li= supplier_order.product.full_title + " | " + supplier_order.paid.to_s + " | Preis: #{supplier_order.price.to_s}"
+
 
 p
   = link_to "New Customer Order", new_customer_order_path
-  =< link_to "All Cusomer Orders", customer_orders_path
+  =< link_to "All Customer Orders", customer_orders_path
 
   br
     | Latest Customer Orders:
     ul
       - @customer_orders.each do |customer_order|
-        li= customer_order.product.title
-        li= "Coverage: #{customer_order.check_coverage}"
+        li= customer_order.product.full_title
+        li= "Verbleibend: #{customer_order.check_coverage.join(" von ")}"
+
+p
+  = link_to "New Brand", new_brand_path
+  =< link_to "All Brands", brands_path
+
+  br
+    | Latest Brands:
+    ul
+      - @brands.each do |brand|
+        li= brand.title
+
+p
+  = link_to "New Franchise", new_franchise_path
+  =< link_to "All Franchise", franchises_path
+
+  br
+    | Latest Franchise:
+    ul
+      - @franchises.each do |franchise|
+        li= franchise.title
