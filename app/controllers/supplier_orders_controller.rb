@@ -5,8 +5,6 @@ class SupplierOrdersController < ApplicationController
 
   def show
     @supplier_order = SupplierOrder.find(params[:id])
-
-    @debt = debt
   end
 
   def new
@@ -44,13 +42,5 @@ class SupplierOrdersController < ApplicationController
   def supplier_order_params
     params.require(:supplier_order).permit(:paid, :price, :product_id, :supplier, :order_number, :amount,
                                             payments_attributes: [:id, :amount, :expense_id, :supplier_order_id, :_destroy])
-  end
-
-  def debt
-    total_einkauf = @supplier_order.price * @supplier_order.amount
-
-    total_bezahlt = @supplier_order.payments.pluck(:amount).sum * @supplier_order.amount
-
-    total_einkauf - total_bezahlt
   end
 end

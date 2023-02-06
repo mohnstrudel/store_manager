@@ -6,17 +6,7 @@ class DashboardController < ApplicationController
     @brands = Brand.last(5)
     @franchises = Franchise.last(5)
 
-    @debt = debt
-  end
-
-  def debt
-    orders = SupplierOrder.pluck(:amount, :price, :paid)
-
-    debt = 0
-    orders.each do |order|
-      debt += (order[0].to_i * order[1].to_i) - (order[0].to_i * order[2].to_i)
-    end
-
-    debt
+    @debt = SupplierOrder.debt
+    @total_debt = SupplierOrder.total_debt
   end
 end
