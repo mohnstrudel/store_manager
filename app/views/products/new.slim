@@ -6,10 +6,10 @@ dl
     dd= f.text_field :title
 
     dt= f.label :brand
-    dd= f.select :brand_id, options_from_collection_for_select(Brand.all, :id, :title)
+    dd= f.select :brand_id, options_from_collection_for_select(Brand.all, :id, :title), {}, { data: { controller: 'slim' } }
 
     dt= f.label :franchise
-    dd= f.select :franchise_id, options_from_collection_for_select(Franchise.all, :id, :title)
+    dd= f.select :franchise_id, options_from_collection_for_select(Franchise.all, :id, :title), {}, { data: { controller: 'slim' } }
 
     dt= f.label :version
     dd= f.select :version, ApplicationHelper::VERSIONS
