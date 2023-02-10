@@ -2,12 +2,3 @@
 # yarn lockfile v1
 
 
-slim-select@^2.4.2:
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/slim-select/-/slim-select-2.4.2.tgz#a75324079324c0148fd629e10cdf8c0a406a10ad"
-  integrity sha512-nqyiOGv1T36XvR4D5ogGzgojnoTUrRY9CgzzxfqJkECQqklVbLNpyPszqR5QDZpxwmtP3kym2dTVdN7mxalGUQ==
-
-stimulus-slimselect@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/stimulus-slimselect/-/stimulus-slimselect-0.2.0.tgz#643c6fadbe2a094607e7ddf7a3f40ab6babdad45"
-  integrity sha512-6KyukGfudxnRG4Y9TmP9GUi3wMoaTiN/f4Kcl8GyIsq1DkIpkxKIM6gnC1gtieBIvXMzV6XbhhLsL/iTZVmO2g==
