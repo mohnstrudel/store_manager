@@ -1,62 +1,81 @@
 h1 Dashboard
 
-p Total debt to Suppliers
-= @total_debt
+.container
+  .row.mt-4
+    .col-md-6
+      .card.bg-info.text-white.shadow.mb-4
+        .card-body
+          h5.card-title
+            | Total debt
+          p.card-text
+            = @total_debt
+    .col-md-6
+      .card.bg-danger.text-white.shadow.mb-4
+        .card-body
+          h5.card-title
+            | Total debt
+          p.card-text
+            = @total_debt
 
-p Debt per Supplier
-dl
-- @debt.each do |supplier, debt|
-  dt= "Supplier: #{supplier}"
-  dd= "Debt: #{debt}"
+  .row.mt-4
+    h2 Debt per Supplier
+    - @debt.each do |supplier, debt|
+      .col-md-3
+        .card.bg-primary.text-white.shadow.mb-4
+          .card-body
+            h5.card-title
+              = supplier
+            p.card-text
+              = number_to_currency(debt, unit: "€")
+
+  .row
+    .col-md-6
+      h2
+        | Verkauf (Kunden)
+      ul.list-group.shadow
+        - @customer_orders.each do |customer_order|
+          li.list-group-item.border-0
+            = customer_order.product.full_title
+            br
+            = "Verbleibend: #{customer_order.check_coverage.join(" von ")}"
+      p
+        = link_to "New Customer Order", new_customer_order_path
+        =< link_to "All Customer Orders", customer_orders_path
 
 
-p
-  = link_to "New product", new_product_path
-  =< link_to "All Products", products_path
-  br
-  | Latest products:
-  ul
-    - @products.each do |product|
-      li= product.full_title
+    .col-md-6
+      h2
+        | Einkauf (Lieferanten)
+      ul.list-group.shadow
+        - @supplier_orders.each do |supplier_order|
+          li.list-group-item.border-0
+            = supplier_order.product.full_title + " | " + supplier_order.paid.to_s + " | Preis: #{supplier_order.price.to_s}"
+      p
+        = link_to "New Supplier Order", new_supplier_order_path
+        =< link_to "All Supplier Orders", supplier_orders_path
 
-p
-  = link_to "New Supplier Order", new_supplier_order_path
-  =< link_to "All Supplier Orders", supplier_orders_path
+= render 'products'
 
-  br
-    | Latest Supplier Orders:
-    ul
-      - @supplier_orders.each do |supplier_order|
-        li= supplier_order.product.full_title + " | " + supplier_order.paid.to_s + " | Preis: #{supplier_order.price.to_s}"
-
-
-p
-  = link_to "New Customer Order", new_customer_order_path
-  =< link_to "All Customer Orders", customer_orders_path
-
-  br
-    | Latest Customer Orders:
-    ul
-      - @customer_orders.each do |customer_order|
-        li= customer_order.product.full_title
-        li= "Verbleibend: #{customer_order.check_coverage.join(" von ")}"
-
-p
-  = link_to "New Brand", new_brand_path
-  =< link_to "All Brands", brands_path
-
-  br
-    | Latest Brands:
-    ul
+.card.shadow
+  .card-header
+    | Brands
+  .card-body
+    dl.row
       - @brands.each do |brand|
-        li= brand.title
+        .col-md-3
+          dt= brand.title
+  .card-footer
+    = link_to "New Brand", new_brand_path, class: 'btn btn-primary'
+    =< link_to "All Brands", brands_path, class: 'btn btn-primary'
 
-p
-  = link_to "New Franchise", new_franchise_path
-  =< link_to "All Franchise", franchises_path
-
-  br
-    | Latest Franchise:
-    ul
+.card.shadow
+  .card-header
+    | Franchise
+  .card-body
+    dl.row
       - @franchises.each do |franchise|
-        li= franchise.title
+        .col-md-3
+          dt= franchise.title
+  .card-footer
+    = link_to "New Franchise", new_franchise_path, class: 'btn btn-primary'
+    =< link_to "All Franchise", franchises_path, class: 'btn btn-primary'

@@ -1,0 +1,26 @@
+.row
+  .col-md-12
+    h2
+      | Produkte
+    table.table.table-striped.table-bordered.shadow
+      thead
+        tr
+          th
+            | Produkt
+          th
+            | Verkauf
+          th
+            | Einkauf
+      tbody
+        - @products.each do |product|
+          tr
+            td= product.full_title
+            td
+              | 123 Stück
+            td
+              | $9.99
+      tfoot
+        tr
+          td
+            = link_to "New product", new_product_path
+            =< link_to "All Products", products_path
