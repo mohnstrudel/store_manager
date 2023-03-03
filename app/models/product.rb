@@ -3,12 +3,30 @@ class Product < ApplicationRecord
   belongs_to :franchise
   belongs_to :brand
 
+  # scope :rueckstand, -> (p) {}
+
   def full_title
     begin
       "#{franchise.title} - #{title} | #{size} Resin Statue | von #{brand.title} | #{version}"
     rescue
       title
     end
+  end
+
+  def sales
+    CustomerOrder.where(product_id: id).count
+  end
+
+  def purchases
+    SupplierOrder.where(product_id: id).pluck(:amount).sum
+  end
+
+  def fehlstand
+    purchases - sales
+  end
+
+  def self.rueckstand
+    select { |product| product.fehlstand < 0 }
   end
 
   def self.find_by_full_title(name, params=nil)
