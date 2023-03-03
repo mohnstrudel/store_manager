@@ -1,2 +1,4 @@
 dt= link_to supplier_order.full_title, supplier_order_path(supplier_order)
 dd= link_to "Delete", supplier_order_path(supplier_order), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
+dd= link_to edit_supplier_order_path(supplier_order) do
+  = fa_icon :pencil

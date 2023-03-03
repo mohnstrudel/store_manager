@@ -16,7 +16,7 @@ class Product < ApplicationRecord
     name = name.gsub("|", "-").split("-").map(&:strip)
 
     product_title = "#{name[0]} - #{name[1]} | #{name[2]} | #{name[3]}"
-    
+
     product = Product.select { |product|
       product.full_title == product_title &&
       product.size == params[:size] &&

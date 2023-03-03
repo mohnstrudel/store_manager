@@ -1,15 +1,30 @@
 class SupplierOrdersController < ApplicationController
+
+  before_action :find_supplier_order, only: [:show, :edit, :destroy, :update]
+
   def index
     @supplier_orders = SupplierOrder.preload(product: [:brand, :franchise]).all
   end
 
   def show
-    @supplier_order = SupplierOrder.find(params[:id])
   end
 
   def new
     @supplier_order = SupplierOrder.new
     @supplier_order.payments.build
+  end
+
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @supplier_order.update(supplier_order_params)
+        format.html { redirect_to supplier_order_path(@supplier_order), notice: 'Supplier order was successfully updated'}
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
   end
 
   def create
@@ -27,8 +42,6 @@ class SupplierOrdersController < ApplicationController
   end
 
   def destroy
-    @supplier_order = SupplierOrder.find(params[:id])
-
     @supplier_order.destroy
 
     respond_to do |format|
@@ -38,6 +51,10 @@ class SupplierOrdersController < ApplicationController
   end
 
   private
+
+  def find_supplier_order
+    @supplier_order = SupplierOrder.find(params[:id])
+  end
 
   def supplier_order_params
     params.require(:supplier_order).permit(:paid, :price, :product_id, :supplier, :order_number, :amount,
