@@ -20,4 +20,10 @@ Rails.application.routes.draw do
   resources :supplier_orders do
     resources :payments, module: :supplier_orders
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :customer_orders
+    end
+  end
 end
