@@ -13,9 +13,11 @@ h1 Dashboard
       .card.bg-danger.text-white.shadow.mb-4
         .card-body
           h5.card-title
-            | Total debt
+            | Rückstände Einkauf
           p.card-text
-            = @total_debt
+            - Product.rueckstand.each do |product_im_rueckstand|
+              = product_im_rueckstand.full_title
+              = product_im_rueckstand.fehlstand
 
   .row.mt-4
     h2 Debt per Supplier
