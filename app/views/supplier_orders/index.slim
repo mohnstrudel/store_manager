@@ -1,10 +1,4 @@
 h2 All Supplier Orders
 
-/ dl
-/   - @supplier_orders.each do |order|
-/     dt= order.full_title
-/     dd
-/       = link_to "Delete", supplier_order_path(order), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
-
 dl
   = render @supplier_orders

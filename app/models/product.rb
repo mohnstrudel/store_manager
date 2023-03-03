@@ -5,7 +5,7 @@ class Product < ApplicationRecord
 
   def full_title
     begin
-      "#{franchise.title} - #{title} | #{size} Resin Statue | von #{brand.title}"
+      "#{franchise.title} - #{title} | #{size} Resin Statue | von #{brand.title} | #{version}"
     rescue
       title
     end
