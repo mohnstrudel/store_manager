@@ -4,6 +4,8 @@ class SupplierOrder < ApplicationRecord
   belongs_to :product
   has_many :payments, as: :payable, dependent: :destroy
 
+  validates :price, :supplier, :amount, presence: true
+
   accepts_nested_attributes_for :payments, allow_destroy: true
 
   # @note Schulden pro Hersteller
