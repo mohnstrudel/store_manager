@@ -1,6 +1,20 @@
 h2= @supplier_order.full_title
 
-p="Debt: #{@supplier_order.debt}"
+.row.mt-4
+  .col-md-2
+    .card.bg-info.text-white.shadow.mb-4
+      .card-body
+        h5.card-title
+          | Total debt
+        p.card-text
+          = @supplier_order.debt
+  .col-md-2
+    .card.bg-primary.text-white.shadow.mb-4
+      .card-body
+        h5.card-title
+          | Debt per Statue
+        p.card-text
+          = @supplier_order.debt / @supplier_order.amount
 
 dl
   dt Purchase price
@@ -15,10 +29,14 @@ dl
   dt Amount
   dd=@supplier_order.amount
 
-p
-  | Payments
-
-  dl
-    = render @supplier_order.payments
+.row
+  .col-md-4
+    table.table.table-hover
+      thead
+        tr
+          th Paid per statue
+          th Paid when
+      tbody
+        = render @supplier_order.payments
 
   = render partial: 'payments/form', locals: { payment: Payment.new, payable: @supplier_order }

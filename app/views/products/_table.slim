@@ -11,6 +11,8 @@
             | Verkauf
           th
             | Einkauf
+          th
+            | Differenz
       tbody
         - @products.each do |product|
           tr
@@ -19,8 +21,10 @@
               = product.sales
             td
               = product.purchases
+            td class="#{'table-danger' if (product.purchases - product.sales)<0}"
+              = product.purchases - product.sales
       tfoot
         tr
-          td colspan="3"
+          td colspan="4"
             = link_to "New product", new_product_path
             =< link_to "All Products", products_path

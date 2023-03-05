@@ -1,0 +1,31 @@
+.row
+  .col-md-12
+    h2
+      | Einkauf (Lieferanten)
+    table.table.table-striped.shadow.table-success
+      thead
+        tr
+          th
+          th Produkt
+          th Anzahl
+          th Preis
+          th Bezahlt
+          th Noch zu zahlen
+      tbody
+        - @supplier_orders.each do |supplier_order|
+          tr
+            td
+              = link_to edit_supplier_order_path(supplier_order) do
+                = fa_icon :pencil
+              = link_to "Delete", supplier_order_path(supplier_order), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
+            td
+              = link_to supplier_order.full_title, supplier_order_path(supplier_order)
+            td= supplier_order.amount
+            td= supplier_order.price.to_s
+            td= supplier_order.payments.pluck(:amount).sum
+            td= supplier_order.debt
+      tfoot
+        tr
+          td colspan="6"
+            = link_to "Neuer Einkauf", new_supplier_order_path
+            =< link_to "Alle Einkäufe", supplier_orders_path
