@@ -1,29 +1,38 @@
-header.p-3.text-bg-dark
-  .container
-    .d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-lg-start
-      a.d-flex.align-items-center.mb-2.mb-lg-0.text-white.text-decoration-none[href="/"]
-        svg.bi.me-2[width="40" height="32" role="img" aria-label="Bootstrap"]
-          use[xlink:href="#bootstrap"]
+nav.navbar.navbar-expand-lg.bg-dark.navbar-dark
+  .container-fluid
+    a.navbar-brand[href="#"]
+      | Store Manager
+    button.navbar-toggler[type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation"]
+      span.navbar-toggler-icon
+    #navbarScroll.collapse.navbar-collapse
+      ul.navbar-nav.me-auto.my-2.my-lg-0.navbar-nav-scroll[style="--bs-scroll-height: 100px;"]
+        li.nav-item
+          = link_to 'Home', dashboard_index_path, class: 'nav-link'
+        li.nav-item
+          = link_to 'Einkauf (Lieferanten)', supplier_orders_path, class: 'nav-link'
+        li.nav-item.dropdown
+          a.nav-link.dropdown-toggle[href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"]
+            |  Link
+          ul.dropdown-menu
+            li
+              a.dropdown-item[href="#"]
+                | Action
+            li
+              a.dropdown-item[href="#"]
+                | Another action
+            li
+              hr.dropdown-divider
+            li
+              a.dropdown-item[href="#"]
+                | Something else here
+        li.nav-item
+          = link_to 'Verkauf (Kunden)', customer_orders_path, class: 'nav-link'
+        li.nav-item
+          = link_to 'Produkte', products_path, class: 'nav-link'
+        li.nav-item
+          = link_to 'Franchise', franchises_path, class: 'nav-link'
 
-      ul.nav.col-12.col-lg-auto.me-lg-auto.mb-2.justify-content-center.mb-md-0
-        li
-          = link_to 'Home', dashboard_index_path, class: 'nav-link px-2 text-secondary'
-        li
-          = link_to 'Einkauf (Lieferanten)', supplier_orders_path, class: 'nav-link px-2'
-        li
-          = link_to 'Verkauf (Kunden)', customer_orders_path, class: 'nav-link px-2'
-        li
-          = link_to 'Produkte', products_path, class: 'nav-link px-2'
-        li
-          = link_to 'Hersteller', brands_path, class: 'nav-link px-2'
-        li
-          = link_to 'Franchise', franchises_path, class: 'nav-link px-2'
-
-      form.col-12.col-lg-auto.mb-3.mb-lg-0.me-lg-3[role="search"]
-        input.form-control.form-control-dark.text-bg-dark[type="search" placeholder="Search..." aria-label="Search"]
-
-      .text-end
-        button.btn.btn-outline-light.me-2[type="button"]
-          | Login
-        button.btn.btn-warning[type="button"]
-          | Sign-up
+      form.d-flex[role="search"]
+        input.form-control.me-2[type="search" placeholder="Search" aria-label="Search"]
+        button.btn.btn-outline-success[type="submit"]
+          | Search
