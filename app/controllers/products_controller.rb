@@ -18,6 +18,11 @@ class ProductsController < ApplicationController
     end
   end
 
+  def missing_purchases
+    @products = Product.rueckstand
+    @product_table_class = "table-danger"
+  end
+
   private
 
   def product_params

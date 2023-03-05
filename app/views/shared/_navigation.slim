@@ -8,18 +8,14 @@ nav.navbar.navbar-expand-lg.bg-dark.navbar-dark
       ul.navbar-nav.me-auto.my-2.my-lg-0.navbar-nav-scroll[style="--bs-scroll-height: 100px;"]
         li.nav-item
           = link_to 'Home', dashboard_index_path, class: 'nav-link'
-        li.nav-item
-          = link_to 'Einkauf (Lieferanten)', supplier_orders_path, class: 'nav-link'
         li.nav-item.dropdown
           a.nav-link.dropdown-toggle[href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"]
-            |  Link
+            |  Einkauf (Lieferanten)
           ul.dropdown-menu
             li
-              a.dropdown-item[href="#"]
-                | Action
+              = link_to 'Gesamteinkauf', supplier_orders_path, class: 'dropdown-item'
             li
-              a.dropdown-item[href="#"]
-                | Another action
+              = link_to 'Fehlstand', missing_purchases_path, class: 'dropdown-item'
             li
               hr.dropdown-divider
             li

@@ -14,11 +14,11 @@ class Product < ApplicationRecord
   end
 
   def sales
-    CustomerOrder.where(product_id: id).count
+    CustomerOrder.preload(:product).where(product_id: id).count
   end
 
   def purchases
-    SupplierOrder.where(product_id: id).pluck(:amount).sum
+    SupplierOrder.preload(:product).where(product_id: id).pluck(:amount).sum
   end
 
   def fehlstand
@@ -27,6 +27,10 @@ class Product < ApplicationRecord
 
   def self.rueckstand
     select { |product| product.fehlstand < 0 }
+  end
+
+  def self.total_rueckstand
+    rueckstand.map { |product_rueckstand| product_rueckstand.fehlstand}.sum
   end
 
   def self.find_by_full_title(name, params=nil)

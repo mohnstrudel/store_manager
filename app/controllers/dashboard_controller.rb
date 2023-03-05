@@ -8,5 +8,6 @@ class DashboardController < ApplicationController
 
     @debt = SupplierOrder.debt
     @total_debt = SupplierOrder.total_debt
+    @total_rueckstand = Product.total_rueckstand
   end
 end
