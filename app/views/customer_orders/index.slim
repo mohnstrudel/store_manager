@@ -1,10 +1,1 @@
-h2 All customer orders
-
-dl
-  - @orders.each do |order|
-    dt= order.product.title
-    dd
-      = order.name
-      = order.address
-      = order.email
-      = order.paid_amount
+= render 'table'

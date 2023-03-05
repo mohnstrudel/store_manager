@@ -1,0 +1,22 @@
+.row
+  .col-md-12
+    h2
+      | Verkauf (Kunden)
+    table.table.table-striped.shadow.table-info
+      thead
+        tr
+          th
+            | Produkt
+          th
+            | Verbleibend
+      tbody
+        - @customer_orders.each do |customer_order|
+          tr
+            td= customer_order.product.full_title
+            td
+              = customer_order.check_coverage.join(" von ")
+      tfoot
+        tr
+          td colspan="2"
+            = link_to "New Customer Order", new_customer_order_path
+            =< link_to "All Customer Orders", customer_orders_path

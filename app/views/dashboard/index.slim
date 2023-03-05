@@ -30,29 +30,10 @@ h1 Dashboard
 
   .row
     .col-md-6
-      h2
-        | Verkauf (Kunden)
-      ul.list-group.shadow
-        - @customer_orders.each do |customer_order|
-          li.list-group-item.border-0
-            = customer_order.product.full_title
-            br
-            = "Verbleibend: #{customer_order.check_coverage.join(" von ")}"
-      p
-        = link_to "New Customer Order", new_customer_order_path
-        =< link_to "All Customer Orders", customer_orders_path
-
+      = render 'customer_orders/table'
 
     .col-md-6
-      h2
-        | Einkauf (Lieferanten)
-      ul.list-group.shadow
-        - @supplier_orders.each do |supplier_order|
-          li.list-group-item.border-0
-            = supplier_order.product.full_title + " | " + supplier_order.paid.to_s + " | Preis: #{supplier_order.price.to_s}"
-      p
-        = link_to "New Supplier Order", new_supplier_order_path
-        =< link_to "All Supplier Orders", supplier_orders_path
+      = render 'supplier_orders/table'
 
 = render 'products/table'
 

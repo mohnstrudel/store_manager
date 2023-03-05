@@ -1,6 +1,6 @@
 class CustomerOrdersController < ApplicationController
   def index
-    @orders = CustomerOrder.preload(:product).all
+    @customer_orders = CustomerOrder.preload(:product).all
   end
 
   def show
