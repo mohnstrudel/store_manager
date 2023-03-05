@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  get 'franchises/new'
-  get 'franchises/index'
-  get 'brands/new'
-  get 'brands/index'
-  get 'supplier_orders/index'
-  get 'supplier_orders/show'
-  get 'customer_orders/index'
-  get 'customer_orders/show'
   get 'dashboard/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -14,6 +6,8 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   root 'dashboard#index'
+
+  get '/missing_purchases', to: 'products#missing_purchases'
 
   resources :products, :customer_orders, :brands, :franchises
 
